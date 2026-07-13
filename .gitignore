@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+venv/
+conda-meta/
+
+# Data and checkpoints
+*.cfl
+*.hdr
+*.npy
+*.npz
+*.mat
+*.pkl
+*.pth
+*.pt
+checkpoints/
+outputs/
+results/
+logs/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
