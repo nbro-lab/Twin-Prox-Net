@@ -10,7 +10,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 
 from mdi_physics import MDIPhysicsLayer
-from train_mapping import DeepMTPMapping12Echo, make_brain_mask
+from train_mapping import make_brain_mask
 from utils import writecfl
 
 
@@ -80,10 +80,9 @@ def main() -> None:
     save_dir = Path(args.save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
 
-    model = DeepMTPMapping12Echo().to(device)
-    checkpoint = torch.load(args.checkpoint, map_location=device)
-    model.load_state_dict(checkpoint["model"] if isinstance(checkpoint, dict) and "model" in checkpoint else checkpoint)
-    model.eval()
+    from mapping_checkpoint import load_mapping_model
+
+    model, _ = load_mapping_model(args.checkpoint, device)
     physics = MDIPhysicsLayer().to(device)
 
     for volume in parse_volumes(args.volumes):

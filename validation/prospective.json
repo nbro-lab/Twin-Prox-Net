@@ -1,0 +1,33 @@
+{
+  "example": "prospective",
+  "input_sections": 7,
+  "forward_passes": 1,
+  "output_sections": 3,
+  "retained_indices": [
+    2,
+    3,
+    4
+  ],
+  "mapping_architecture": "legacy_pairwise_8_and_10_channels",
+  "reconstruction_architecture": "released_adaptive_coil_combination",
+  "normalization": "maximum acquired-image RSS within the seven-section stack",
+  "normalization_scale": 66.74398803710938,
+  "acquired_data_relative_residual": 0.0,
+  "image_comparison": {
+    "magnitude_relative_error_after_global_gain_fit": 0.21516016125679016,
+    "reconstruction_gain_for_image_comparison": 0.6301702857017517,
+    "spatial_registration": "none; corresponding source indices"
+  },
+  "reference_status": "GRAPPA 4x reconstruction",
+  "reference_shape": [
+    3,
+    1,
+    12,
+    288,
+    84
+  ],
+  "finite_outputs": true,
+  "seconds": 1.3490197658538818,
+  "torch_version": "2.11.0+cu128",
+  "device": "cuda:0"
+}

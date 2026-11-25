@@ -1,0 +1,31 @@
+{
+  "example": "retrospective",
+  "input_sections": 7,
+  "forward_passes": 1,
+  "output_sections": 3,
+  "retained_indices": [
+    2,
+    3,
+    4
+  ],
+  "mapping_architecture": "legacy_pairwise_8_and_10_channels",
+  "reconstruction_architecture": "released_adaptive_coil_combination",
+  "normalization": "maximum acquired-image RSS within the seven-section stack",
+  "normalization_scale": 55.70534133911133,
+  "acquired_data_relative_residual": 0.0,
+  "image_comparison": {
+    "complex_image_relative_error": 0.272437185049057
+  },
+  "reference_status": "fully_sampled",
+  "reference_shape": [
+    3,
+    12,
+    12,
+    288,
+    84
+  ],
+  "finite_outputs": true,
+  "seconds": 4.839964389801025,
+  "torch_version": "2.11.0+cu128",
+  "device": "cuda:0"
+}

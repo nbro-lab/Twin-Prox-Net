@@ -1,0 +1,14 @@
+{
+  "niter": 15,
+  "cg_iterations": 10,
+  "num_echoes": 12,
+  "input_sections": 7,
+  "retained_indices": [
+    2,
+    3,
+    4
+  ],
+  "normalization": "maximum acquired-image RSS within the seven-section stack",
+  "stage1_checkpoint": "checkpoints/stage1_tpn.pkl",
+  "stage2_checkpoint": "checkpoints/stage2_mapping.pkl"
+}

@@ -1,21 +1,30 @@
-# GitHub release alignment notes
+# Release notes
 
-This package was revised to match the final Twin-Prox Net manuscript, except for the total parameter count, which depends on the final mapping-network checkpoint/version selected for release.
+This release provides a runnable seven-section reconstruction and quantitative
+mapping example for Twin-Prox Net.
 
-Implemented alignment changes:
+## Included components
 
-- replaced explicit CSM/SENSE combination with reference-echo-derived adaptive complex coil combination;
-- used the same adaptive weights for coil expansion before each subsequent hard data-consistency step;
-- removed all workstation-specific `/data0/...` paths and fixed GPU IDs;
-- set the default Stage I configuration to 10 CG-SNM initialization iterations, 15 unrolled iterations, seven input sections, three central supervised sections, and batch size four;
-- implemented the manuscript composite loss with coefficients 1.0/0.5/0.1/0.05/0.1;
-- retained the two independent six-image FA branches with shared EchoConvGRU parameters and separately initialized hidden states;
-- changed MDI-Net input construction from multiple pairwise ratio maps to the two integrated complex ratio maps in manuscript Eq. (11);
-- discarded and re-indexed the transient first image before MDI ratio estimation;
-- trained MDI-Net through the differentiable Bloch solver using quantitative T1/T2* targets;
-- changed retrospective evaluation to use the fully sampled reference rather than CG initialization;
-- added a local differentiable SSIM implementation;
-- removed duplicate executable blocks and legacy path-dependent mapping code;
-- documented that QSM processing uses an external standard pipeline.
+- Stage I reconstruction and Stage II mapping pretrained checkpoints.
+- One retrospective example with a fully sampled reference.
+- One prospective accelerated example with a separate GRAPPA 4x reference reconstruction.
+- Seven adjacent readout sections and all 12 contrasts per example.
+- Calibrated SNM kernels, sampling masks, inference configuration and SHA256 checksums.
+- A single-pass inference script that retains the central three reconstructed sections
+  and produces T1 and T2* maps.
+- Automatic architecture selection and strict loading of the supplied mapping checkpoint.
 
-The code was syntax-checked and smoke-tested with small synthetic tensors. Full numerical reproduction still requires the original masks, pretrained checkpoints, calibrated SNMs maps, and de-identified example data.
+## Validation
+
+Both examples completed reconstruction and mapping with finite outputs.
+The acquired-data consistency residual was zero in both cases.
+Validation reports are included in the validation directory.
+
+See README.md for installation, data layout, checkpoint loading and execution commands.
+
+## Reference data layout
+
+The prospective reference is supplied separately as
+`examples/prospective_reference_grappa4x.npy`: seven sections, one combined-coil
+channel and 12 contrasts. The example runner reads this image directly and uses
+the matching central three sections for reference mapping.
